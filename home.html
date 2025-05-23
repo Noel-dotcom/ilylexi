@@ -15,6 +15,7 @@
     body {
       font-family: 'Inter', sans-serif;
       scroll-behavior: smooth;
+      position: relative;
     }
 
     .hero {
@@ -24,10 +25,14 @@
       justify-content: space-between;
       align-items: center;
       padding: 4rem;
+      position: relative;
+      overflow: hidden;
     }
 
     .hero-text {
       flex: 1;
+      position: relative;
+      z-index: 1;
     }
 
     .hero h1 {
@@ -51,6 +56,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      position: relative;
+      z-index: 1;
     }
 
     .hero-image img {
@@ -146,12 +153,69 @@
         height: 340px;
       }
     }
+
+    /* Hearts Background inside .hero */
+    .heart-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: visible;
+
+      /* Fade out hearts at bottom */
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
+    }
+
+    .heart {
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      background-color: pink;
+      transform: rotate(45deg);
+      animation: fall linear infinite;
+      opacity: 0.7;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      background-color: pink;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -16px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -16px;
+      top: 0;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-10vh) rotate(45deg);
+      }
+      100% {
+        transform: translateY(110vh) rotate(45deg);
+      }
+    }
   </style>
 </head>
 <body>
 
-  <!-- First Section -->
-  <section class="hero">
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="heart-background" id="heart-background"></div> <!-- Hearts inside hero only -->
+
     <div class="hero-text">
       <h1>HELLO BABY,</h1>
       <h2>WELCOME TO YOUR WEBSITE! &lt;3</h2>
@@ -163,28 +227,49 @@
 
   <!-- Second Section -->
   <section class="section-grid">
-
     <div class="section-item">
       <span>LOVE COUPONS</span>
       <a href="coupons.html" class="inner-button">C L A I M  I T</a>
     </div>
-
     <div class="section-item">
       <span>LOVE LETTERS</span>
       <a href="letters.html" class="inner-button">R E A D T H E M</a>
     </div>
-
     <div class="section-item">
       <span>MAIN LETTER</span>
       <a href="main-letter.html" class="inner-button">R E A D  I T</a>
     </div>
-
     <div class="section-item">
       <span>DEDICATED SONG</span>
       <a href="song.html" class="inner-button">L I S T E N  T O  I T</a>
     </div>
-
   </section>
+
+  <!-- Falling Heart Script -->
+  <script>
+    const container = document.getElementById('heart-background');
+    const heroSection = document.getElementById('hero');
+
+    function createHeart() {
+      // Only create hearts if hero is visible on viewport
+      const rect = heroSection.getBoundingClientRect();
+      if (rect.bottom > 0) {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.animationDuration = 5 + Math.random() * 5 + 's';
+        heart.style.opacity = Math.random() * 0.7 + 0.3;
+        heart.style.transform = 'rotate(45deg) scale(' + (Math.random() * 0.3 + 0.7) + ')';
+        container.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 10000); // Clean up after 10s
+      }
+    }
+
+    setInterval(createHeart, 200); // Create a heart every 200ms
+  </script>
 
 </body>
 </html>
