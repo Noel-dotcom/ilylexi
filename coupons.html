@@ -45,13 +45,14 @@
       justify-content: center;
       text-align: center;
       font-family: 'Inter', sans-serif;
-      font-size: 1.6rem;
+      font-size: 2rem; /* Increased font size */
       font-weight: 900;
       color: #333;
+      background-color: #ffe0eb; /* Light pink for contrast */
     }
 
     .fine-print {
-      font-size: 0.75rem;
+      font-size: 0.9rem; /* Slightly larger fine print */
       margin-top: 0.5rem;
       color: #666;
       font-family: 'Inter', sans-serif;
@@ -139,6 +140,35 @@
         font-size: 1.3rem;
       }
     }
+
+    .back-button {
+      display: inline-block;
+      margin: 2rem 0;
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #e91e63, #d81b60);
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      box-shadow: 0 6px 12px rgba(233, 30, 99, 0.4);
+      transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+      user-select: none;
+    }
+
+    .back-button:hover,
+    .back-button:focus {
+      background: linear-gradient(135deg, #d81b60, #c2185b);
+      box-shadow: 0 8px 18px rgba(194, 24, 91, 0.6);
+      transform: scale(1.05);
+      outline: none;
+    }
+
+    .back-button:active {
+      transform: scale(0.95);
+      box-shadow: 0 4px 8px rgba(194, 24, 91, 0.8);
+    }
   </style>
 </head>
 <body>
@@ -148,7 +178,7 @@
     <div class="coupon">
       <div class="coupon-main">
         1 FREE PHOTO
-        <div class="fine-print">Ill send you a photo of me.</div>
+        <div class="fine-print">I'll send you a photo of me.</div>
       </div>
       <div class="tear-line">
         <div class="cutout top"></div>
@@ -163,7 +193,7 @@
     <div class="coupon">
       <div class="coupon-main">
         FALL ASLEEP WITH ME
-        <div class="fine-print">Ill fall asleep on call with you.</div>
+        <div class="fine-print">I'll fall asleep on call with you.</div>
       </div>
       <div class="tear-line">
         <div class="cutout top"></div>
@@ -193,7 +223,7 @@
     <div class="coupon">
       <div class="coupon-main">
         ASK ME 1 QUESTION
-        <div class="fine-print">You can ask me 1 question and Ill answer it honestly.</div>
+        <div class="fine-print">You can ask me 1 question and I'll answer it honestly.</div>
       </div>
       <div class="tear-line">
         <div class="cutout top"></div>
@@ -208,7 +238,7 @@
     <div class="coupon">
       <div class="coupon-main">
         LOVE LIST
-        <div class="fine-print">Ill list 10 things that I love about you.</div>
+        <div class="fine-print">I'll list 10 things that I love about you.</div>
       </div>
       <div class="tear-line">
         <div class="cutout top"></div>
@@ -223,7 +253,7 @@
     <div class="coupon">
       <div class="coupon-main">
         VOICE MESSAGE
-        <div class="fine-print">Ill record a short voice message for you.</div>
+        <div class="fine-print">I'll record a short voice message for you.</div>
       </div>
       <div class="tear-line">
         <div class="cutout top"></div>
@@ -235,36 +265,8 @@
       </div>
     </div>
   </div>
+
   <!-- Back to Home button -->
   <a href="home.html" class="back-button">← Back to Home</a>
-
-  <style>
-    .back-button {
-      display: inline-block;
-      margin: 2rem 0;
-      padding: 12px 24px;
-      background: linear-gradient(135deg, #e91e63, #d81b60);
-      color: white;
-      text-decoration: none;
-      border-radius: 30px;
-      font-family: 'Inter', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      box-shadow: 0 6px 12px rgba(233, 30, 99, 0.4);
-      transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
-      user-select: none;
-    }
-    .back-button:hover,
-    .back-button:focus {
-      background: linear-gradient(135deg, #d81b60, #c2185b);
-      box-shadow: 0 8px 18px rgba(194, 24, 91, 0.6);
-      transform: scale(1.05);
-      outline: none;
-    }
-    .back-button:active {
-      transform: scale(0.95);
-      box-shadow: 0 4px 8px rgba(194, 24, 91, 0.8);
-    }
-  </style>
 </body>
 </html>
