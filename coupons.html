@@ -1,129 +1,331 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Coupons</title>
-<style>
-  .coupon {
-    display: inline-block;
-    position: relative;
-    width: 200px;
-    height: 100px;
-    margin: 15px;
-    background: linear-gradient(90deg, #ffcc00 0%, #ff9900 100%);
-    border-radius: 12px;
-    box-shadow: 0 0 8px rgba(0,0,0,0.2);
-    cursor: pointer;
-    user-select: none;
-    outline: none;
-    transition: background-color 0.3s;
-    color: #222;
-    padding: 12px;
-  }
-  .coupon.used {
-    background: #888888;
-    cursor: default;
-    color: #eee;
-  }
-  .coupon:focus {
-    box-shadow: 0 0 0 3px #3399ff;
-  }
-  .tear-label {
-    position: absolute;
-    top: 8px;
-    right: 12px;
-    font-weight: bold;
-    font-size: 1.2rem;
-    user-select: none;
-  }
-  .coupon.used .tear-label {
-    color: #eee;
-  }
-  h3 {
-    margin: 0 0 8px 0;
-  }
-  p {
-    margin: 0;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Love Coupons</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;900&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      padding: 2rem;
+      background: #fff8f5;
+      font-family: 'Inter', sans-serif;
+    }
+
+    h1 {
+      text-align: center;
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.5rem;
+      color: #e91e63;
+      margin-bottom: 2rem;
+    }
+
+    .coupon-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+
+    .coupon {
+      display: flex;
+      background: white;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+      height: 240px;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      transition: filter 0.3s ease;
+      user-select: none;
+    }
+
+    .coupon-main {
+      flex: 1;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      font-family: 'Inter', sans-serif;
+      font-size: 2rem;
+      font-weight: 900;
+      color: #333;
+      background-color: #ffe0eb;
+      transition: color 0.3s ease;
+    }
+
+    .fine-print {
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      color: #666;
+      font-weight: 300;
+      transition: color 0.3s ease;
+    }
+
+    .tear-line {
+      width: 120px;
+      position: relative;
+      background-color: #e91e63;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image:
+        repeating-linear-gradient(
+          to bottom,
+          transparent 0,
+          transparent 12px,
+          #fff8f5 12px,
+          #fff8f5 18px,
+          transparent 18px,
+          transparent 30px
+        );
+      background-repeat: repeat-y;
+      background-position: left center;
+      background-size: 6px 30px;
+      transition: background-color 0.3s ease;
+    }
+
+    .tear-label {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0;
+      line-height: 1.2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      z-index: 2;
+      user-select: none;
+      transition: color 0.3s ease;
+    }
+
+    .tear-label span:first-child,
+    .tear-label span:last-child {
+      font-size: 1.6rem;
+      letter-spacing: 1px;
+      font-weight: 700;
+    }
+
+    .cutout {
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      background: #fff8f5;
+      border-radius: 50%;
+      left: -16px;
+      z-index: 2;
+    }
+
+    .cutout.top {
+      top: -16px;
+    }
+
+    .cutout.bottom {
+      bottom: -16px;
+    }
+
+    /* Used state */
+    .coupon.used {
+      filter: grayscale(60%) brightness(90%);
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .coupon.used .coupon-main {
+      color: #999;
+    }
+
+    .coupon.used .fine-print {
+      color: #999;
+    }
+
+    .coupon.used .tear-line {
+      background-color: #999;
+    }
+
+    .coupon.used .tear-label {
+      color: #eee;
+    }
+
+    .coupon.used .tear-label span:first-child {
+      content: "USED";
+    }
+
+    @media (max-width: 768px) {
+      .coupon-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tear-line {
+        width: 90px;
+      }
+
+      .tear-label {
+        font-size: 1.3rem;
+      }
+
+      .tear-label span:first-child,
+      .tear-label span:last-child {
+        font-size: 1.3rem;
+      }
+    }
+
+    .back-button {
+      display: inline-block;
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #e91e63, #d81b60);
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 1rem;
+      box-shadow: 0 6px 12px rgba(233, 30, 99, 0.4);
+      transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+      user-select: none;
+    }
+
+    .back-button:hover,
+    .back-button:focus {
+      background: linear-gradient(135deg, #d81b60, #c2185b);
+      box-shadow: 0 8px 18px rgba(194, 24, 91, 0.6);
+      transform: scale(1.05);
+      outline: none;
+    }
+
+    .back-button:active {
+      transform: scale(0.95);
+      box-shadow: 0 4px 8px rgba(194, 24, 91, 0.8);
+    }
+
+    .center-button-container {
+      text-align: center;
+      margin-top: 3rem;
+    }
+  </style>
 </head>
 <body>
+  <h1>Love Coupons</h1>
 
-  <div class="coupon" data-id="coupon1" role="button" tabindex="0" aria-pressed="false" aria-label="Coupon 1, unused">
-    <div class="tear-label"><span>USE</span></div>
-    <h3>10% OFF</h3>
-    <p>Use this coupon to get 10% off your next purchase.</p>
+  <div class="coupon-grid">
+    <div class="coupon" tabindex="0" role="button" aria-pressed="false" aria-label="1 Free Photo coupon">
+      <div class="coupon-main">
+        1 FREE PHOTO
+        <div class="fine-print">I'll send you a photo of me.</div>
+      </div>
+      <div class="tear-line">
+        <div class="cutout top"></div>
+        <div class="tear-label">
+          <span>ONE TIME</span>
+          <span>USE</span>
+        </div>
+        <div class="cutout bottom"></div>
+      </div>
+    </div>
+
+    <div class="coupon" tabindex="0" role="button" aria-pressed="false" aria-label="Fall asleep with me coupon">
+      <div class="coupon-main">
+        FALL ASLEEP WITH ME
+        <div class="fine-print">I'll fall asleep on call with you.</div>
+      </div>
+      <div class="tear-line">
+        <div class="cutout top"></div>
+        <div class="tear-label">
+          <span>ONE TIME</span>
+          <span>USE</span>
+        </div>
+        <div class="cutout bottom"></div>
+      </div>
+    </div>
+
+    <div class="coupon" tabindex="0" role="button" aria-pressed="false" aria-label="Dare me to do anything coupon">
+      <div class="coupon-main">
+        DARE ME TO DO ANYTHING
+        <div class="fine-print">You can dare me to do one thing, no questions asked.</div>
+      </div>
+      <div class="tear-line">
+        <div class="cutout top"></div>
+        <div class="tear-label">
+          <span>ONE TIME</span>
+          <span>USE</span>
+        </div>
+        <div class="cutout bottom"></div>
+      </div>
+    </div>
+
+    <div class="coupon" tabindex="0" role="button" aria-pressed="false" aria-label="Ask me 1 question coupon">
+      <div class="coupon-main">
+        ASK ME 1 QUESTION
+        <div class="fine-print">You can ask me 1 question and I'll answer it honestly.</div>
+      </div>
+      <div class="tear-line">
+        <div class="cutout top"></div>
+        <div class="tear-label">
+          <span>ONE TIME</span>
+          <span>USE</span>
+        </div>
+        <div class="cutout bottom"></div>
+      </div>
+    </div>
+
+    <div class="coupon" tabindex="0" role="button" aria-pressed="false" aria-label="Love list coupon">
+      <div class="coupon-main">
+        LOVE LIST
+        <div class="fine-print">I'll list 10 things that I love about you.</div>
+      </div>
+      <div class="tear-line">
+        <div class="cutout top"></div>
+        <div class="tear-label">
+          <span>ONE TIME</span>
+          <span>USE</span>
+        </div>
+        <div class="cutout bottom"></div>
+      </div>
+    </div>
+
+    <div class="coupon" tabindex="0" role="button" aria-pressed="false" aria-label="Voice message coupon">
+      <div class="coupon-main">
+        VOICE MESSAGE
+        <div class="fine-print">I'll record a short voice message for you.</div>
+      </div>
+      <div class="tear-line">
+        <div class="cutout top"></div>
+        <div class="tear-label">
+          <span>ONE TIME</span>
+          <span>USE</span>
+        </div>
+        <div class="cutout bottom"></div>
+      </div>
+    </div>
   </div>
 
-  <div class="coupon" data-id="coupon2" role="button" tabindex="0" aria-pressed="false" aria-label="Coupon 2, unused">
-    <div class="tear-label"><span>USE</span></div>
-    <h3>Free Shipping</h3>
-    <p>Apply this coupon for free shipping on your order.</p>
+  <!-- Centered Back to Home button -->
+  <div class="center-button-container">
+    <a href="home.html" class="back-button">← Back to Home</a>
   </div>
 
-  <div class="coupon" data-id="coupon3" role="button" tabindex="0" aria-pressed="false" aria-label="Coupon 3, unused">
-    <div class="tear-label"><span>USE</span></div>
-    <h3>15% OFF</h3>
-    <p>Save 15% on orders over $50.</p>
-  </div>
-
-<script>
-  // Try to load used coupons from localStorage or initialize empty object
-  let usedCoupons = {};
-  try {
-    const stored = localStorage.getItem('usedCoupons');
-    if (stored) {
-      usedCoupons = JSON.parse(stored);
-    }
-  } catch (err) {
-    console.error('Could not parse usedCoupons from localStorage:', err);
-  }
-
-  function markCouponUsed(coupon) {
-    coupon.classList.add('used');
-    coupon.setAttribute('aria-pressed', 'true');
-    // Update aria-label to reflect used status
-    const oldLabel = coupon.getAttribute('aria-label') || '';
-    coupon.setAttribute('aria-label', oldLabel.replace('unused', 'used'));
-    // Update label text to USED
-    const label = coupon.querySelector('.tear-label span');
-    if (label) label.textContent = 'USED';
-    // Remove pointer cursor
-    coupon.style.cursor = 'default';
-  }
-
-  // Attach handlers and initialize used coupons state
-  document.querySelectorAll('.coupon').forEach(coupon => {
-    const id = coupon.getAttribute('data-id');
-
-    // Mark used on page load if stored
-    if (usedCoupons[id]) {
-      markCouponUsed(coupon);
-    }
-
-    coupon.addEventListener('click', () => {
-      if (!coupon.classList.contains('used')) {
-        markCouponUsed(coupon);
-        usedCoupons[id] = true;
-        try {
-          localStorage.setItem('usedCoupons', JSON.stringify(usedCoupons));
-        } catch (err) {
-          console.error('Failed to save usedCoupons:', err);
+  <script>
+    document.querySelectorAll('.coupon').forEach(coupon => {
+      coupon.addEventListener('click', () => {
+        if (!coupon.classList.contains('used')) {
+          coupon.classList.add('used');
+          coupon.setAttribute('aria-pressed', 'true');
+          // Change tear label text from "ONE TIME USE" to "USED"
+          const label = coupon.querySelector('.tear-label');
+          label.innerHTML = '<span>USED</span>';
         }
-      }
+      });
+      // Also allow keyboard "Enter" or "Space" key to redeem
+      coupon.addEventListener('keydown', (e) => {
+        if ((e.key === 'Enter' || e.key === ' ') && !coupon.classList.contains('used')) {
+          e.preventDefault();
+          coupon.click();
+        }
+      });
     });
-
-    // Keyboard accessibility (Enter or Space)
-    coupon.addEventListener('keydown', e => {
-      if ((e.key === 'Enter' || e.key === ' ') && !coupon.classList.contains('used')) {
-        e.preventDefault();
-        coupon.click();
-      }
-    });
-  });
-</script>
-
+  </script>
 </body>
 </html>
-
