@@ -429,13 +429,19 @@
 <textarea readonly>Thank you for being the most caring person I know.</textarea>
 <textarea readonly>I’m lucky to have you in my life, no matter the miles.</textarea>
 <textarea readonly>Your care is the closest thing I have to a hug right now.</textarea>
-<!-- Back to Home button -->
-<a href="home.html" class="back-button">← Back to Home</a>
+<div class="button-wrapper">
+  <a href="home.html" class="back-button">← Back to Home</a>
+</div>
 
 <style>
+  .button-wrapper {
+    text-align: center;
+    margin-top: 2rem; /* adjust this to control space from messages */
+    margin-bottom: 1rem;
+  }
+
   .back-button {
     display: inline-block;
-    margin: 2rem 0;
     padding: 12px 24px;
     background: linear-gradient(135deg, #e91e63, #d81b60);
     color: white;
@@ -448,6 +454,7 @@
     transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
     user-select: none;
   }
+
   .back-button:hover,
   .back-button:focus {
     background: linear-gradient(135deg, #d81b60, #c2185b);
@@ -455,6 +462,7 @@
     transform: scale(1.05);
     outline: none;
   }
+
   .back-button:active {
     transform: scale(0.95);
     box-shadow: 0 4px 8px rgba(194, 24, 91, 0.8);
