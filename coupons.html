@@ -151,10 +151,6 @@
       color: #eee;
     }
 
-    .coupon.used .tear-label span:first-child {
-      content: "USED";
-    }
-
     @media (max-width: 768px) {
       .coupon-grid {
         grid-template-columns: 1fr;
@@ -211,7 +207,7 @@
   <h1>Love Coupons</h1>
 
   <div class="coupon-grid">
-    <div class="coupon" tabindex="0" role="button" aria-pressed="false" aria-label="1 Free Photo coupon">
+    <div class="coupon" tabindex="0" role="button" aria-pressed="false" aria-label="1 Free Photo coupon" data-id="coupon1">
       <div class="coupon-main">
         1 FREE PHOTO
         <div class="fine-print">I'll send you a photo of me.</div>
@@ -226,7 +222,7 @@
       </div>
     </div>
 
-    <div class="coupon" tabindex="0" role="button" aria-pressed="false" aria-label="Fall asleep with me coupon">
+    <div class="coupon" tabindex="0" role="button" aria-pressed="false" aria-label="Fall asleep with me coupon" data-id="coupon2">
       <div class="coupon-main">
         FALL ASLEEP WITH ME
         <div class="fine-print">I'll fall asleep on call with you.</div>
@@ -241,7 +237,7 @@
       </div>
     </div>
 
-    <div class="coupon" tabindex="0" role="button" aria-pressed="false" aria-label="Dare me to do anything coupon">
+    <div class="coupon" tabindex="0" role="button" aria-pressed="false" aria-label="Dare me to do anything coupon" data-id="coupon3">
       <div class="coupon-main">
         DARE ME TO DO ANYTHING
         <div class="fine-print">You can dare me to do one thing, no questions asked.</div>
@@ -256,7 +252,7 @@
       </div>
     </div>
 
-    <div class="coupon" tabindex="0" role="button" aria-pressed="false" aria-label="Ask me 1 question coupon">
+    <div class="coupon" tabindex="0" role="button" aria-pressed="false" aria-label="Ask me 1 question coupon" data-id="coupon4">
       <div class="coupon-main">
         ASK ME 1 QUESTION
         <div class="fine-print">You can ask me 1 question and I'll answer it honestly.</div>
@@ -271,7 +267,7 @@
       </div>
     </div>
 
-    <div class="coupon" tabindex="0" role="button" aria-pressed="false" aria-label="Love list coupon">
+    <div class="coupon" tabindex="0" role="button" aria-pressed="false" aria-label="Love list coupon" data-id="coupon5">
       <div class="coupon-main">
         LOVE LIST
         <div class="fine-print">I'll list 10 things that I love about you.</div>
@@ -286,7 +282,7 @@
       </div>
     </div>
 
-    <div class="coupon" tabindex="0" role="button" aria-pressed="false" aria-label="Voice message coupon">
+    <div class="coupon" tabindex="0" role="button" aria-pressed="false" aria-label="Voice message coupon" data-id="coupon6">
       <div class="coupon-main">
         VOICE MESSAGE
         <div class="fine-print">I'll record a short voice message for you.</div>
@@ -308,16 +304,26 @@
   </div>
 
   <script>
+    // Load used coupons from localStorage
+    const usedCoupons = JSON.parse(localStorage.getItem('usedCoupons') || '{}');
+
     document.querySelectorAll('.coupon').forEach(coupon => {
+      const id = coupon.getAttribute('data-id');
+
+      // If coupon is used in localStorage, mark as used on page load
+      if (usedCoupons[id]) {
+        markCouponUsed(coupon);
+      }
+
       coupon.addEventListener('click', () => {
         if (!coupon.classList.contains('used')) {
-          coupon.classList.add('used');
-          coupon.setAttribute('aria-pressed', 'true');
-          // Change tear label text from "ONE TIME USE" to "USED"
-          const label = coupon.querySelector('.tear-label');
-          label.innerHTML = '<span>USED</span>';
+          markCouponUsed(coupon);
+          // Save to localStorage
+          usedCoupons[id] = true;
+          localStorage.setItem('usedCoupons', JSON.stringify(usedCoupons));
         }
       });
+
       // Also allow keyboard "Enter" or "Space" key to redeem
       coupon.addEventListener('keydown', (e) => {
         if ((e.key === 'Enter' || e.key === ' ') && !coupon.classList.contains('used')) {
@@ -326,6 +332,13 @@
         }
       });
     });
+
+    function markCouponUsed(coupon) {
+      coupon.classList.add('used');
+      coupon.setAttribute('aria-pressed', 'true');
+      const label = coupon.querySelector('.tear-label');
+      label.innerHTML = '<span>USED</span>';
+    }
   </script>
 </body>
 </html>
