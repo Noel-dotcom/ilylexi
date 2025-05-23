@@ -45,17 +45,16 @@
       justify-content: center;
       text-align: center;
       font-family: 'Inter', sans-serif;
-      font-size: 2rem; /* Increased font size */
+      font-size: 2rem;
       font-weight: 900;
       color: #333;
-      background-color: #ffe0eb; /* Light pink for contrast */
+      background-color: #ffe0eb;
     }
 
     .fine-print {
-      font-size: 0.9rem; /* Slightly larger fine print */
+      font-size: 0.9rem;
       margin-top: 0.5rem;
       color: #666;
-      font-family: 'Inter', sans-serif;
       font-weight: 300;
     }
 
@@ -84,7 +83,6 @@
     .tear-label {
       writing-mode: vertical-rl;
       transform: rotate(180deg);
-      font-family: 'Inter', sans-serif;
       font-weight: 700;
       font-size: 1.6rem;
       color: #fff;
@@ -143,13 +141,11 @@
 
     .back-button {
       display: inline-block;
-      margin: 2rem 0;
       padding: 12px 24px;
       background: linear-gradient(135deg, #e91e63, #d81b60);
       color: white;
       text-decoration: none;
       border-radius: 30px;
-      font-family: 'Inter', sans-serif;
       font-weight: 700;
       font-size: 1rem;
       box-shadow: 0 6px 12px rgba(233, 30, 99, 0.4);
@@ -168,6 +164,11 @@
     .back-button:active {
       transform: scale(0.95);
       box-shadow: 0 4px 8px rgba(194, 24, 91, 0.8);
+    }
+
+    .center-button-container {
+      text-align: center;
+      margin-top: 3rem;
     }
   </style>
 </head>
@@ -266,7 +267,9 @@
     </div>
   </div>
 
-  <!-- Back to Home button -->
-  <a href="home.html" class="back-button">← Back to Home</a>
+  <!-- Centered Back to Home button -->
+  <div class="center-button-container">
+    <a href="home.html" class="back-button">← Back to Home</a>
+  </div>
 </body>
 </html>
