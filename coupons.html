@@ -1,45 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Coupons</title>
-  <style>
-    .coupon {
-      display: inline-block;
-      position: relative;
-      width: 200px;
-      height: 100px;
-      margin: 15px;
-      background: linear-gradient(90deg, #ffcc00 0%, #ff9900 100%);
-      border-radius: 12px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.2);
-      cursor: pointer;
-      user-select: none;
-      outline: none;
-      transition: background-color 0.3s;
-    }
-    .coupon.used {
-      background: #888888;
-      cursor: default;
-      color: #fff;
-    }
-    .coupon:focus {
-      box-shadow: 0 0 0 3px #3399ff;
-    }
-    .tear-label {
-      position: absolute;
-      top: 8px;
-      right: 12px;
-      font-weight: bold;
-      font-size: 1.2rem;
-      color: #222;
-      user-select: none;
-    }
-    .coupon.used .tear-label {
-      color: #eee;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Coupons</title>
+<style>
+  .coupon {
+    display: inline-block;
+    position: relative;
+    width: 200px;
+    height: 100px;
+    margin: 15px;
+    background: linear-gradient(90deg, #ffcc00 0%, #ff9900 100%);
+    border-radius: 12px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.2);
+    cursor: pointer;
+    user-select: none;
+    outline: none;
+    transition: background-color 0.3s;
+    color: #222;
+    padding: 12px;
+  }
+  .coupon.used {
+    background: #888888;
+    cursor: default;
+    color: #eee;
+  }
+  .coupon:focus {
+    box-shadow: 0 0 0 3px #3399ff;
+  }
+  .tear-label {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    user-select: none;
+  }
+  .coupon.used .tear-label {
+    color: #eee;
+  }
+  h3 {
+    margin: 0 0 8px 0;
+  }
+  p {
+    margin: 0;
+  }
+</style>
 </head>
 <body>
 
@@ -62,47 +69,52 @@
   </div>
 
 <script>
-  // Load used coupons from localStorage (or empty object)
+  // Try to load used coupons from localStorage or initialize empty object
   let usedCoupons = {};
   try {
-    usedCoupons = JSON.parse(localStorage.getItem('usedCoupons') || '{}');
-  } catch (e) {
-    console.error("Failed to parse usedCoupons:", e);
+    const stored = localStorage.getItem('usedCoupons');
+    if (stored) {
+      usedCoupons = JSON.parse(stored);
+    }
+  } catch (err) {
+    console.error('Could not parse usedCoupons from localStorage:', err);
   }
 
-  // Function to mark coupon as used visually and accessibility-wise
   function markCouponUsed(coupon) {
     coupon.classList.add('used');
     coupon.setAttribute('aria-pressed', 'true');
-    coupon.setAttribute('aria-label', coupon.getAttribute('aria-label').replace('unused', 'used'));
-    const label = coupon.querySelector('.tear-label');
-    if (label) label.innerHTML = '<span>USED</span>';
+    // Update aria-label to reflect used status
+    const oldLabel = coupon.getAttribute('aria-label') || '';
+    coupon.setAttribute('aria-label', oldLabel.replace('unused', 'used'));
+    // Update label text to USED
+    const label = coupon.querySelector('.tear-label span');
+    if (label) label.textContent = 'USED';
+    // Remove pointer cursor
+    coupon.style.cursor = 'default';
   }
 
+  // Attach handlers and initialize used coupons state
   document.querySelectorAll('.coupon').forEach(coupon => {
     const id = coupon.getAttribute('data-id');
 
-    // On page load, mark used coupons from localStorage
+    // Mark used on page load if stored
     if (usedCoupons[id]) {
       markCouponUsed(coupon);
     }
 
-    // Click handler
     coupon.addEventListener('click', () => {
       if (!coupon.classList.contains('used')) {
         markCouponUsed(coupon);
-
-        // Save to localStorage
         usedCoupons[id] = true;
         try {
           localStorage.setItem('usedCoupons', JSON.stringify(usedCoupons));
-        } catch (e) {
-          console.error("Failed to save usedCoupons:", e);
+        } catch (err) {
+          console.error('Failed to save usedCoupons:', err);
         }
       }
     });
 
-    // Keyboard accessibility: activate on Enter or Space
+    // Keyboard accessibility (Enter or Space)
     coupon.addEventListener('keydown', e => {
       if ((e.key === 'Enter' || e.key === ' ') && !coupon.classList.contains('used')) {
         e.preventDefault();
@@ -114,3 +126,4 @@
 
 </body>
 </html>
+
