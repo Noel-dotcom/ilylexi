@@ -35,6 +35,9 @@
       border-radius: 8px;
       overflow: hidden;
       position: relative;
+      cursor: pointer;
+      transition: filter 0.3s ease;
+      user-select: none;
     }
 
     .coupon-main {
@@ -49,6 +52,7 @@
       font-weight: 900;
       color: #333;
       background-color: #ffe0eb;
+      transition: color 0.3s ease;
     }
 
     .fine-print {
@@ -56,6 +60,7 @@
       margin-top: 0.5rem;
       color: #666;
       font-weight: 300;
+      transition: color 0.3s ease;
     }
 
     .tear-line {
@@ -78,6 +83,7 @@
       background-repeat: repeat-y;
       background-position: left center;
       background-size: 6px 30px;
+      transition: background-color 0.3s ease;
     }
 
     .tear-label {
@@ -93,6 +99,8 @@
       flex-direction: column;
       justify-content: center;
       z-index: 2;
+      user-select: none;
+      transition: color 0.3s ease;
     }
 
     .tear-label span:first-child,
@@ -118,6 +126,33 @@
 
     .cutout.bottom {
       bottom: -16px;
+    }
+
+    /* Used state */
+    .coupon.used {
+      filter: grayscale(60%) brightness(90%);
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .coupon.used .coupon-main {
+      color: #999;
+    }
+
+    .coupon.used .fine-print {
+      color: #999;
+    }
+
+    .coupon.used .tear-line {
+      background-color: #999;
+    }
+
+    .coupon.used .tear-label {
+      color: #eee;
+    }
+
+    .coupon.used .tear-label span:first-child {
+      content: "USED";
     }
 
     @media (max-width: 768px) {
@@ -176,7 +211,7 @@
   <h1>Love Coupons</h1>
 
   <div class="coupon-grid">
-    <div class="coupon">
+    <div class="coupon" tabindex="0" role="button" aria-pressed="false" aria-label="1 Free Photo coupon">
       <div class="coupon-main">
         1 FREE PHOTO
         <div class="fine-print">I'll send you a photo of me.</div>
@@ -191,7 +226,7 @@
       </div>
     </div>
 
-    <div class="coupon">
+    <div class="coupon" tabindex="0" role="button" aria-pressed="false" aria-label="Fall asleep with me coupon">
       <div class="coupon-main">
         FALL ASLEEP WITH ME
         <div class="fine-print">I'll fall asleep on call with you.</div>
@@ -206,7 +241,7 @@
       </div>
     </div>
 
-    <div class="coupon">
+    <div class="coupon" tabindex="0" role="button" aria-pressed="false" aria-label="Dare me to do anything coupon">
       <div class="coupon-main">
         DARE ME TO DO ANYTHING
         <div class="fine-print">You can dare me to do one thing, no questions asked.</div>
@@ -221,7 +256,7 @@
       </div>
     </div>
 
-    <div class="coupon">
+    <div class="coupon" tabindex="0" role="button" aria-pressed="false" aria-label="Ask me 1 question coupon">
       <div class="coupon-main">
         ASK ME 1 QUESTION
         <div class="fine-print">You can ask me 1 question and I'll answer it honestly.</div>
@@ -236,7 +271,7 @@
       </div>
     </div>
 
-    <div class="coupon">
+    <div class="coupon" tabindex="0" role="button" aria-pressed="false" aria-label="Love list coupon">
       <div class="coupon-main">
         LOVE LIST
         <div class="fine-print">I'll list 10 things that I love about you.</div>
@@ -251,7 +286,7 @@
       </div>
     </div>
 
-    <div class="coupon">
+    <div class="coupon" tabindex="0" role="button" aria-pressed="false" aria-label="Voice message coupon">
       <div class="coupon-main">
         VOICE MESSAGE
         <div class="fine-print">I'll record a short voice message for you.</div>
@@ -271,5 +306,26 @@
   <div class="center-button-container">
     <a href="home.html" class="back-button">← Back to Home</a>
   </div>
+
+  <script>
+    document.querySelectorAll('.coupon').forEach(coupon => {
+      coupon.addEventListener('click', () => {
+        if (!coupon.classList.contains('used')) {
+          coupon.classList.add('used');
+          coupon.setAttribute('aria-pressed', 'true');
+          // Change tear label text from "ONE TIME USE" to "USED"
+          const label = coupon.querySelector('.tear-label');
+          label.innerHTML = '<span>USED</span>';
+        }
+      });
+      // Also allow keyboard "Enter" or "Space" key to redeem
+      coupon.addEventListener('keydown', (e) => {
+        if ((e.key === 'Enter' || e.key === ' ') && !coupon.classList.contains('used')) {
+          e.preventDefault();
+          coupon.click();
+        }
+      });
+    });
+  </script>
 </body>
 </html>
