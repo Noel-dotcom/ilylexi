@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Main Love Letter 📜</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto&family=Inter:wght@300;900&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Roboto', sans-serif;
@@ -35,17 +35,36 @@
 
     .button-container {
       margin-top: 2rem;
+      text-align: center;
     }
 
-    a.back-button {
+    .back-button {
       display: inline-block;
-      padding: 10px 20px;
-      background-color: #e91e63;
+      margin: 2rem 0;
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #e91e63, #d81b60);
       color: white;
-      border-radius: 10px;
       text-decoration: none;
-      font-weight: bold;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border-radius: 30px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      box-shadow: 0 6px 12px rgba(233, 30, 99, 0.4);
+      transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+      user-select: none;
+    }
+
+    .back-button:hover,
+    .back-button:focus {
+      background: linear-gradient(135deg, #d81b60, #c2185b);
+      box-shadow: 0 8px 18px rgba(194, 24, 91, 0.6);
+      transform: scale(1.05);
+      outline: none;
+    }
+
+    .back-button:active {
+      transform: scale(0.95);
+      box-shadow: 0 4px 8px rgba(194, 24, 91, 0.8);
     }
   </style>
 </head>
