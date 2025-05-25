@@ -151,10 +151,6 @@
       color: #eee;
     }
 
-    .coupon.used .tear-label span:first-child {
-      content: "USED";
-    }
-
     @media (max-width: 768px) {
       .coupon-grid {
         grid-template-columns: 1fr;
@@ -211,114 +207,59 @@
   <h1>Love Coupons</h1>
 
   <div class="coupon-grid">
-    <div class="coupon" tabindex="0" role="button" aria-pressed="false" aria-label="1 Free Photo coupon">
-      <div class="coupon-main">
-        1 FREE PHOTO
-        <div class="fine-print">I'll send you a photo of me.</div>
-      </div>
-      <div class="tear-line">
-        <div class="cutout top"></div>
-        <div class="tear-label">
-          <span>ONE TIME</span>
-          <span>USE</span>
-        </div>
-        <div class="cutout bottom"></div>
-      </div>
+    <div class="coupon" data-id="photo" tabindex="0" role="button" aria-pressed="false" aria-label="1 Free Photo coupon">
+      <div class="coupon-main">1 FREE PHOTO<div class="fine-print">I'll send you a photo of me.</div></div>
+      <div class="tear-line"><div class="cutout top"></div><div class="tear-label"><span>ONE TIME</span><span>USE</span></div><div class="cutout bottom"></div></div>
     </div>
 
-    <div class="coupon" tabindex="0" role="button" aria-pressed="false" aria-label="Fall asleep with me coupon">
-      <div class="coupon-main">
-        FALL ASLEEP WITH ME
-        <div class="fine-print">I'll fall asleep on call with you.</div>
-      </div>
-      <div class="tear-line">
-        <div class="cutout top"></div>
-        <div class="tear-label">
-          <span>ONE TIME</span>
-          <span>USE</span>
-        </div>
-        <div class="cutout bottom"></div>
-      </div>
+    <div class="coupon" data-id="sleep" tabindex="0" role="button" aria-pressed="false" aria-label="Fall asleep with me coupon">
+      <div class="coupon-main">FALL ASLEEP WITH ME<div class="fine-print">I'll fall asleep on call with you.</div></div>
+      <div class="tear-line"><div class="cutout top"></div><div class="tear-label"><span>ONE TIME</span><span>USE</span></div><div class="cutout bottom"></div></div>
     </div>
 
-    <div class="coupon" tabindex="0" role="button" aria-pressed="false" aria-label="Dare me to do anything coupon">
-      <div class="coupon-main">
-        DARE ME TO DO ANYTHING
-        <div class="fine-print">You can dare me to do one thing, no questions asked.</div>
-      </div>
-      <div class="tear-line">
-        <div class="cutout top"></div>
-        <div class="tear-label">
-          <span>ONE TIME</span>
-          <span>USE</span>
-        </div>
-        <div class="cutout bottom"></div>
-      </div>
+    <div class="coupon" data-id="dare" tabindex="0" role="button" aria-pressed="false" aria-label="Dare me to do anything coupon">
+      <div class="coupon-main">DARE ME TO DO ANYTHING<div class="fine-print">You can dare me to do one thing, no questions asked.</div></div>
+      <div class="tear-line"><div class="cutout top"></div><div class="tear-label"><span>ONE TIME</span><span>USE</span></div><div class="cutout bottom"></div></div>
     </div>
 
-    <div class="coupon" tabindex="0" role="button" aria-pressed="false" aria-label="Ask me 1 question coupon">
-      <div class="coupon-main">
-        ASK ME 1 QUESTION
-        <div class="fine-print">You can ask me 1 question and I'll answer it honestly.</div>
-      </div>
-      <div class="tear-line">
-        <div class="cutout top"></div>
-        <div class="tear-label">
-          <span>ONE TIME</span>
-          <span>USE</span>
-        </div>
-        <div class="cutout bottom"></div>
-      </div>
+    <div class="coupon" data-id="question" tabindex="0" role="button" aria-pressed="false" aria-label="Ask me 1 question coupon">
+      <div class="coupon-main">ASK ME 1 QUESTION<div class="fine-print">You can ask me 1 question and I'll answer it honestly.</div></div>
+      <div class="tear-line"><div class="cutout top"></div><div class="tear-label"><span>ONE TIME</span><span>USE</span></div><div class="cutout bottom"></div></div>
     </div>
 
-    <div class="coupon" tabindex="0" role="button" aria-pressed="false" aria-label="Love list coupon">
-      <div class="coupon-main">
-        LOVE LIST
-        <div class="fine-print">I'll list 10 things that I love about you.</div>
-      </div>
-      <div class="tear-line">
-        <div class="cutout top"></div>
-        <div class="tear-label">
-          <span>ONE TIME</span>
-          <span>USE</span>
-        </div>
-        <div class="cutout bottom"></div>
-      </div>
+    <div class="coupon" data-id="love-list" tabindex="0" role="button" aria-pressed="false" aria-label="Love list coupon">
+      <div class="coupon-main">LOVE LIST<div class="fine-print">I'll list 10 things that I love about you.</div></div>
+      <div class="tear-line"><div class="cutout top"></div><div class="tear-label"><span>ONE TIME</span><span>USE</span></div><div class="cutout bottom"></div></div>
     </div>
 
-    <div class="coupon" tabindex="0" role="button" aria-pressed="false" aria-label="Voice message coupon">
-      <div class="coupon-main">
-        VOICE MESSAGE
-        <div class="fine-print">I'll record a short voice message for you.</div>
-      </div>
-      <div class="tear-line">
-        <div class="cutout top"></div>
-        <div class="tear-label">
-          <span>ONE TIME</span>
-          <span>USE</span>
-        </div>
-        <div class="cutout bottom"></div>
-      </div>
+    <div class="coupon" data-id="voice" tabindex="0" role="button" aria-pressed="false" aria-label="Voice message coupon">
+      <div class="coupon-main">VOICE MESSAGE<div class="fine-print">I'll record a short voice message for you.</div></div>
+      <div class="tear-line"><div class="cutout top"></div><div class="tear-label"><span>ONE TIME</span><span>USE</span></div><div class="cutout bottom"></div></div>
     </div>
   </div>
 
-  <!-- Centered Back to Home button -->
   <div class="center-button-container">
     <a href="home.html" class="back-button">← Back to Home</a>
   </div>
 
   <script>
+    const usedCoupons = JSON.parse(localStorage.getItem('usedCoupons') || '{}');
+
     document.querySelectorAll('.coupon').forEach(coupon => {
+      const id = coupon.dataset.id;
+
+      if (usedCoupons[id]) {
+        markCouponUsed(coupon);
+      }
+
       coupon.addEventListener('click', () => {
         if (!coupon.classList.contains('used')) {
-          coupon.classList.add('used');
-          coupon.setAttribute('aria-pressed', 'true');
-          // Change tear label text from "ONE TIME USE" to "USED"
-          const label = coupon.querySelector('.tear-label');
-          label.innerHTML = '<span>USED</span>';
+          usedCoupons[id] = true;
+          localStorage.setItem('usedCoupons', JSON.stringify(usedCoupons));
+          markCouponUsed(coupon);
         }
       });
-      // Also allow keyboard "Enter" or "Space" key to redeem
+
       coupon.addEventListener('keydown', (e) => {
         if ((e.key === 'Enter' || e.key === ' ') && !coupon.classList.contains('used')) {
           e.preventDefault();
@@ -326,6 +267,14 @@
         }
       });
     });
+
+    function markCouponUsed(coupon) {
+      coupon.classList.add('used');
+      coupon.setAttribute('aria-pressed', 'true');
+      const label = coupon.querySelector('.tear-label');
+      label.innerHTML = '<span>USED</span>';
+    }
   </script>
 </body>
 </html>
+
