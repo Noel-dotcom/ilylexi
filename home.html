@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>For My Love 💖</title>
+  <title>For My Love</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;900&display=swap" rel="stylesheet" />
   <style>
     * {
@@ -20,7 +20,7 @@
 
     .hero {
       height: 100vh;
-      background-color: #fff0f5;
+      background-color: #f3e5f5;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -47,7 +47,7 @@
       font-size: 4rem;
       font-weight: 900;
       text-transform: uppercase;
-      color: #e91e63;
+      color: #6a1b9a; /* Royal purple */
       margin-top: -0.5rem;
     }
 
@@ -93,13 +93,21 @@
       font-weight: 900;
       text-transform: uppercase;
       display: block;
-      margin-bottom: 1rem;
+      margin: 1rem 0;
     }
 
-    .section-item:nth-child(1) { background-color: #ffc1e3; }
-    .section-item:nth-child(2) { background-color: #f48fb1; }
-    .section-item:nth-child(3) { background-color: #ec407a; }
-    .section-item:nth-child(4) { background-color: #ad1457; }
+    .section-img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-item:nth-child(1) { background-color: #d1c4e9; }
+    .section-item:nth-child(2) { background-color: #b39ddb; }
+    .section-item:nth-child(3) { background-color: #9575cd; }
+    .section-item:nth-child(4) { background-color: #512da8; }
 
     .inner-button {
       padding: 10px 24px;
@@ -152,6 +160,11 @@
         width: 260px;
         height: 340px;
       }
+
+      .section-img {
+        width: 80px;
+        height: 80px;
+      }
     }
 
     .heart-background {
@@ -171,7 +184,7 @@
       position: absolute;
       width: 32px;
       height: 32px;
-      background-color: pink;
+      background-color: #ba68c8;
       transform: rotate(45deg);
       animation: fall linear infinite;
       opacity: 0.7;
@@ -183,7 +196,7 @@
       position: absolute;
       width: 32px;
       height: 32px;
-      background-color: pink;
+      background-color: #ba68c8;
       border-radius: 50%;
     }
 
@@ -206,7 +219,6 @@
       }
     }
 
-    /* Secret Link Styling */
     .secret-link {
       text-decoration: none;
       color: inherit;
@@ -238,18 +250,22 @@
   <!-- Second Section -->
   <section class="section-grid">
     <div class="section-item">
+      <img src="https://i.imgur.com/YTRT0cS.png" alt="Coupon Image" class="section-img" />
       <span>LOVE COUPONS</span>
       <a href="coupons.html" class="inner-button">C L A I M  I T</a>
     </div>
     <div class="section-item">
+      <img src="https://i.imgur.com/cX6BOnh.png" alt="Letters Image" class="section-img" />
       <span>LOVE LETTERS</span>
       <a href="letters.html" class="inner-button">R E A D T H E M</a>
     </div>
     <div class="section-item">
+      <img src="https://i.imgur.com/txAdy3l.png" alt="Main Letter" class="section-img" />
       <span>MAIN LETTER</span>
       <a href="main-letter.html" class="inner-button">R E A D  I T</a>
     </div>
     <div class="section-item">
+      <img src="https://i.imgur.com/3YF09DW.png" alt="song" class="section-img" />
       <span>DEDICATED SONG</span>
       <a href="song.html" class="inner-button">L I S T E N  T O  I T</a>
     </div>
