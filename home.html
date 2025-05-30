@@ -11,293 +11,292 @@
       padding: 0;
       box-sizing: border-box;
     }
+body {
+  font-family: 'Inter', sans-serif;
+  scroll-behavior: smooth;
+  position: relative;
+}
 
-    body {
-      font-family: 'Inter', sans-serif;
-      scroll-behavior: smooth;
-      position: relative;
-    }
+.hero {
+  height: 100vh;
+  background-color: #ebe6ff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4rem;
+  position: relative;
+  overflow: hidden;
+}
 
-    .hero {
-      height: 100vh;
-      background-color: #ebe6ff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 4rem;
-      position: relative;
-      overflow: hidden;
-    }
+.hero-text {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
 
-    .hero-text {
-      flex: 1;
-      position: relative;
-      z-index: 1;
-    }
+.hero h1 {
+  font-size: 1.3rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 1rem;
+}
 
-    .hero h1 {
-      font-size: 1.3rem;
-      font-weight: 300;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 1rem;
-    }
+.hero h2 {
+  font-size: 4rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #6a35c6;
+  margin-top: -0.5rem;
+}
 
-    .hero h2 {
-      font-size: 4rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      color: #6a35c6;
-      margin-top: -0.5rem;
-    }
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
 
-    .hero-image {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      z-index: 1;
-    }
+.hero-image img {
+  width: 460px;
+  height: 540px;
+  object-fit: cover;
+  border-radius: 12px;
+}
 
-    .hero-image img {
-      width: 460px;
-      height: 540px;
-      object-fit: cover;
-      border-radius: 12px;
-    }
+.section-grid {
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 100vh; /* MODIFIED: Was height: 100vh; */
+  width: 100%;
+}
 
-    .section-grid {
-      display: flex;
-      flex-wrap: wrap;
-      height: 100vh;
-      width: 100%;
-    }
+.section-item {
+  flex: 1 1 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 2rem;
+  user-select: none;
+}
 
-    .section-item {
-      flex: 1 1 25%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      font-size: 1.4rem;
-      font-weight: bold;
-      text-align: center;
-      padding: 2rem;
-      user-select: none;
-    }
+.section-item span {
+  font-size: 1.4rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  display: block;
+  margin: 1rem 0;
+}
 
-    .section-item span {
-      font-size: 1.4rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      display: block;
-      margin: 1rem 0;
-    }
+.section-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
 
-    .section-img {
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-      border-radius: 8px;
-      margin-bottom: 0.5rem;
-    }
+.section-item:nth-child(1) { background-color: #d1c4e9; }
+.section-item:nth-child(2) { background-color: #b39ddb; }
+.section-item:nth-child(3) { background-color: #9575cd; }
+.section-item:nth-child(4) { background-color: #512da8; }
 
-    .section-item:nth-child(1) { background-color: #d1c4e9; }
-    .section-item:nth-child(2) { background-color: #b39ddb; }
-    .section-item:nth-child(3) { background-color: #9575cd; }
-    .section-item:nth-child(4) { background-color: #512da8; }
+.inner-button {
+  padding: 10px 24px;
+  font-size: 0.75rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.15);
+  border: none;
+  pointer-events: auto;
+  user-select: none;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
-    .inner-button {
-      padding: 10px 24px;
-      font-size: 0.75rem;
-      font-weight: 300;
-      text-transform: uppercase;
-      color: white;
-      background-color: rgba(0, 0, 0, 0.15);
-      border: none;
-      pointer-events: auto;
-      user-select: none;
-      text-decoration: none;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
+.inner-button:hover {
+  background-color: rgba(0, 0, 0, 0.25);
+}
 
-    .inner-button:hover {
-      background-color: rgba(0, 0, 0, 0.25);
-    }
+.section-open-this {
+  background-color: #f3f0fc;
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-    .section-open-this {
-      background-color: #f3f0fc;
-      min-height: 100vh;
-      padding: 4rem 2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+.open-this-title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #6a35c6;
+  margin-bottom: 2rem;
+  text-align: center;
+}
 
-    .open-this-title {
-      font-size: 2.5rem;
-      font-weight: 900;
-      color: #6a35c6;
-      margin-bottom: 2rem;
-      text-align: center;
-    }
+.open-this-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
 
-    .open-this-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      justify-content: center;
-    }
+.open-this-item {
+  background-color: #dcd2f7;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  width: 220px;
+}
 
-    .open-this-item {
-      background-color: #dcd2f7;
-      padding: 1.5rem;
-      border-radius: 12px;
-      text-align: center;
-      width: 220px;
-    }
+.open-this-item img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
 
-    .open-this-item img {
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-      border-radius: 8px;
-      margin-bottom: 1rem;
-    }
+.open-this-item span {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  font-size: 1rem;
+}
 
-    .open-this-item span {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 700;
-      font-size: 1rem;
-    }
+@media (max-width: 768px) {
+  .section-item {
+    flex: 1 1 50%;
+  }
 
-    @media (max-width: 768px) {
-      .section-item {
-        flex: 1 1 50%;
-      }
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
 
-      .hero {
-        flex-direction: column;
-        text-align: center;
-      }
+  .hero-image {
+    margin-top: 2rem;
+  }
+}
 
-      .hero-image {
-        margin-top: 2rem;
-      }
-    }
+@media (max-width: 480px) {
+  .section-item {
+    flex: 1 1 100%;
+  }
 
-    @media (max-width: 480px) {
-      .section-item {
-        flex: 1 1 100%;
-      }
+  .hero h2 {
+    font-size: 2.2rem;
+  }
 
-      .hero h2 {
-        font-size: 2.2rem;
-      }
+  .hero h1 {
+    font-size: 1rem;
+  }
 
-      .hero h1 {
-        font-size: 1rem;
-      }
+  .hero-image img {
+    width: 260px;
+    height: 340px;
+  }
 
-      .hero-image img {
-        width: 260px;
-        height: 340px;
-      }
+  .section-img {
+    width: 80px;
+    height: 80px;
+  }
 
-      .section-img {
-        width: 80px;
-        height: 80px;
-      }
+  .open-this-item {
+    width: 90%;
+  }
+}
 
-      .open-this-item {
-        width: 90%;
-      }
-    }
+.heart-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: visible;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
+}
 
-    .heart-background {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-      overflow: visible;
-      mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
-      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
-    }
+.heart {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  background-color: #9a70f8;
+  transform: rotate(45deg);
+  animation: fall linear infinite;
+  opacity: 0.7;
+}
 
-    .heart {
-      position: absolute;
-      width: 32px;
-      height: 32px;
-      background-color: #9a70f8;
-      transform: rotate(45deg);
-      animation: fall linear infinite;
-      opacity: 0.7;
-    }
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  background-color: #9a70f8;
+  border-radius: 50%;
+}
 
-    .heart::before,
-    .heart::after {
-      content: "";
-      position: absolute;
-      width: 32px;
-      height: 32px;
-      background-color: #9a70f8;
-      border-radius: 50%;
-    }
+.heart::before {
+  top: -16px;
+  left: 0;
+}
 
-    .heart::before {
-      top: -16px;
-      left: 0;
-    }
+.heart::after {
+  left: -16px;
+  top: 0;
+}
 
-    .heart::after {
-      left: -16px;
-      top: 0;
-    }
+@keyframes fall {
+  0% {
+    transform: translateY(-10vh) rotate(45deg);
+  }
+  100% {
+    transform: translateY(110vh) rotate(45deg);
+  }
+}
 
-    @keyframes fall {
-      0% {
-        transform: translateY(-10vh) rotate(45deg);
-      }
-      100% {
-        transform: translateY(110vh) rotate(45deg);
-      }
-    }
+.secret-link {
+  text-decoration: none;
+  color: inherit;
+  cursor: default;
+  pointer-events: auto;
+}
 
-    .secret-link {
-      text-decoration: none;
-      color: inherit;
-      cursor: default;
-      pointer-events: auto;
-    }
-
-    .secret-link:hover {
-      text-decoration: none;
-      color: inherit;
-    }
+.secret-link:hover {
+  text-decoration: none;
+  color: inherit;
+}
   </style>
 </head>
 <body>
-
-  <!-- Hero Section -->
+  
+  <!-- first Section -->
   <section class="hero" id="hero">
     <div class="heart-background" id="heart-background"></div>
     <div class="hero-text">
       <h1>HELLO <a href="secret.html" class="secret-link">BABY</a>,</h1>
-      <h2>WELCOME TO YOUR WEBSITE! &lt;3</h2>
+      <h2>WELCOME TO YOUR WEBSITE! <3</h2>
     </div>
     <div class="hero-image">
       <img src="https://i.imgur.com/bHAdhN4.png" alt="Her Photo" />
     </div>
   </section>
-
-  <!-- Love Sections -->
+  
+  <!-- Second Section -->
   <section class="section-grid">
     <div class="section-item">
       <img src="https://i.imgur.com/YTRT0cS.png" alt="Coupon Image" class="section-img" />
@@ -320,18 +319,18 @@
       <a href="song.html" class="inner-button">L I S T E N  T O  I T</a>
     </div>
   </section>
-
-  <!-- Open This When Section -->
+  
+  <!-- 3rd Section -->
   <section class="section-open-this">
     <div class="open-this-title">Open this when you...</div>
     <div class="open-this-grid">
       <div class="open-this-item">
-        <img src="https://i.imgur.com/3ShTz5g.png" alt="Sad" />
+        <img src="https://i.imgur.com/RXmOkP2.png" alt="Sad" />
         <span>Feel Sad</span>
         <a href="sad.html" class="inner-button">O p e n t h i s</a>
       </div>
       <div class="open-this-item">
-        <img src="https://i.imgur.com/SqZR9Os.png" alt="Happy" />
+        <img src="https://i.imgur.com/tDR42xv.png" alt="Happy" />
         <span>Feel Happy</span>
         <a href="happy.html" class="inner-button">O p e n t h i s</a>
       </div>
@@ -341,43 +340,43 @@
         <a href="miss.html" class="inner-button">O p e n t h i s</a>
       </div>
       <div class="open-this-item">
-        <img src="https://i.imgur.com/6S5gD7j.png" alt="Mad" />
+        <img src="https://i.imgur.com/2iYRrxu.png" alt="Mad" />
         <span>Are Mad at Me</span>
         <a href="mad.html" class="inner-button">O p e n t h i s</a>
       </div>
       <div class="open-this-item">
-        <img src="https://i.imgur.com/lPI4ucS.png" alt="Tired" />
+        <img src="https://i.imgur.com/KthRZwZ.png" alt="Tired" />
         <span>Feel Tired</span>
         <a href="tired.html" class="inner-button">O p e n t h i s</a>
       </div>
       <div class="open-this-item">
-        <img src="https://i.imgur.com/0Qu1ZVG.png" alt="Loved" />
+        <img src="https://i.imgur.com/nUqRrFu.png" alt="Loved" />
         <span>Wanna Feel Loved</span>
         <a href="loved.html" class="inner-button">O p e n t h i s</a>
       </div>
       <div class="open-this-item">
-        <img src="https://i.imgur.com/yLyB9Rj.png" alt="Overthinking" />
+        <img src="https://i.imgur.com/ZeEzcJm.png" alt="Overthinking" />
         <span>Are Overthinking</span>
         <a href="overthinking.html" class="inner-button">O p e n t h i s</a>
       </div>
       <div class="open-this-item">
-        <img src="https://i.imgur.com/8NqNnKk.png" alt="Laugh" />
+        <img src="https://i.imgur.com/8mBo4yC.png" alt="Laugh" />
         <span>Wanna Laugh</span>
-        <a href="laugh.html" class="inner-button">Open this</a>
+        <a href="laugh.html" class="inner-button">O p e n t h i s</a>
       </div>
       <div class="open-this-item">
-        <img src="https://i.imgur.com/FlV9XyN.png" alt="Stressed" />
+        <img src="https://i.imgur.com/kNWvreh.png" alt="Stressed" />
         <span>Feel Stressed</span>
-        <a href="stressed.html" class="inner-button">Open this</a>
+        <a href="stressed.html" class="inner-button">O p e n t h i s</a>
       </div>
       <div class="open-this-item">
-        <img src="https://i.imgur.com/vHZhlnQ.png" alt="Lonely" />
+        <img src="https://i.imgur.com/nnnJgbt.png" alt="Lonely" />
         <span>Feel Lonely</span>
-        <a href="lonely.html" class="inner-button">Open this</a>
+        <a href="lonely.html" class="inner-button">OO p e n t h i s</a>
       </div>
     </div>
   </section>
-
+  
   <!-- Falling Heart Script -->
   <script>
     const container = document.getElementById('heart-background');
@@ -385,23 +384,37 @@
 
     function createHeart() {
       const rect = heroSection.getBoundingClientRect();
-      if (rect.bottom > 0) {
+      if (rect.bottom > 0) { // Only create hearts if hero section is somewhat visible
         const heart = document.createElement('div');
         heart.classList.add('heart');
         heart.style.left = Math.random() * 100 + '%';
         heart.style.animationDuration = 5 + Math.random() * 5 + 's';
         heart.style.opacity = Math.random() * 0.7 + 0.3;
-        heart.style.transform = 'rotate(45deg) scale(' + (Math.random() * 0.3 + 0.7) + ')';
+        // Adjust scale for better visual
+        const scale = Math.random() * 0.3 + 0.7; // Hearts between 70% and 100% of original size
+        heart.style.transform = 'rotate(45deg) scale(' + scale + ')';
         container.appendChild(heart);
         setTimeout(() => {
           heart.remove();
-        }, 10000);
+        }, 10000); // Corresponds to max animation duration + buffer
       }
     }
+    // Create hearts at a reasonable interval
+    // Avoid creating too many too quickly if createHeart is very fast
+    let heartInterval = setInterval(createHeart, 200);
 
-    setInterval(createHeart, 200);
+    // Optional: Pause heart creation when tab is not visible to save resources
+    document.addEventListener("visibilitychange", function() {
+      if (document.hidden) {
+        clearInterval(heartInterval);
+      } else {
+        // Clear any existing interval before starting a new one
+        clearInterval(heartInterval);
+        heartInterval = setInterval(createHeart, 200);
+      }
+    });
+
   </script>
-
 </body>
 </html>
 
