@@ -20,7 +20,7 @@
 
     .hero {
       height: 100vh;
-      background-color: #ebe6ff; /* updated: brighter pale purple but still white-ish */
+      background-color: #ebe6ff;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -47,7 +47,7 @@
       font-size: 4rem;
       font-weight: 900;
       text-transform: uppercase;
-      color: #6a35c6; /* slightly darker purple */
+      color: #6a35c6;
       margin-top: -0.5rem;
     }
 
@@ -128,6 +128,53 @@
       background-color: rgba(0, 0, 0, 0.25);
     }
 
+    .section-open-this {
+      background-color: #f3f0fc;
+      min-height: 100vh;
+      padding: 4rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .open-this-title {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: #6a35c6;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .open-this-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+
+    .open-this-item {
+      background-color: #dcd2f7;
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+      width: 220px;
+    }
+
+    .open-this-item img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+
+    .open-this-item span {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
     @media (max-width: 768px) {
       .section-item {
         flex: 1 1 50%;
@@ -165,6 +212,10 @@
         width: 80px;
         height: 80px;
       }
+
+      .open-this-item {
+        width: 90%;
+      }
     }
 
     .heart-background {
@@ -184,7 +235,7 @@
       position: absolute;
       width: 32px;
       height: 32px;
-      background-color: #9a70f8; /* lighter purple than #8145f1 */
+      background-color: #9a70f8;
       transform: rotate(45deg);
       animation: fall linear infinite;
       opacity: 0.7;
@@ -237,7 +288,6 @@
   <!-- Hero Section -->
   <section class="hero" id="hero">
     <div class="heart-background" id="heart-background"></div>
-
     <div class="hero-text">
       <h1>HELLO <a href="secret.html" class="secret-link">BABY</a>,</h1>
       <h2>WELCOME TO YOUR WEBSITE! &lt;3</h2>
@@ -247,7 +297,7 @@
     </div>
   </section>
 
-  <!-- Second Section -->
+  <!-- Love Sections -->
   <section class="section-grid">
     <div class="section-item">
       <img src="https://i.imgur.com/YTRT0cS.png" alt="Coupon Image" class="section-img" />
@@ -271,6 +321,63 @@
     </div>
   </section>
 
+  <!-- Open This When Section -->
+  <section class="section-open-this">
+    <div class="open-this-title">Open this when you...</div>
+    <div class="open-this-grid">
+      <div class="open-this-item">
+        <img src="https://i.imgur.com/3ShTz5g.png" alt="Sad" />
+        <span>Feel Sad</span>
+        <a href="sad.html" class="inner-button">O p e n t h i s</a>
+      </div>
+      <div class="open-this-item">
+        <img src="https://i.imgur.com/SqZR9Os.png" alt="Happy" />
+        <span>Feel Happy</span>
+        <a href="happy.html" class="inner-button">O p e n t h i s</a>
+      </div>
+      <div class="open-this-item">
+        <img src="https://i.imgur.com/xnqGMdT.png" alt="Miss Me" />
+        <span>Miss Me</span>
+        <a href="miss.html" class="inner-button">O p e n t h i s</a>
+      </div>
+      <div class="open-this-item">
+        <img src="https://i.imgur.com/6S5gD7j.png" alt="Mad" />
+        <span>Are Mad at Me</span>
+        <a href="mad.html" class="inner-button">O p e n t h i s</a>
+      </div>
+      <div class="open-this-item">
+        <img src="https://i.imgur.com/lPI4ucS.png" alt="Tired" />
+        <span>Feel Tired</span>
+        <a href="tired.html" class="inner-button">O p e n t h i s</a>
+      </div>
+      <div class="open-this-item">
+        <img src="https://i.imgur.com/0Qu1ZVG.png" alt="Loved" />
+        <span>Wanna Feel Loved</span>
+        <a href="loved.html" class="inner-button">O p e n t h i s</a>
+      </div>
+      <div class="open-this-item">
+        <img src="https://i.imgur.com/yLyB9Rj.png" alt="Overthinking" />
+        <span>Are Overthinking</span>
+        <a href="overthinking.html" class="inner-button">O p e n t h i s</a>
+      </div>
+      <div class="open-this-item">
+        <img src="https://i.imgur.com/8NqNnKk.png" alt="Laugh" />
+        <span>Wanna Laugh</span>
+        <a href="laugh.html" class="inner-button">Open this</a>
+      </div>
+      <div class="open-this-item">
+        <img src="https://i.imgur.com/FlV9XyN.png" alt="Stressed" />
+        <span>Feel Stressed</span>
+        <a href="stressed.html" class="inner-button">Open this</a>
+      </div>
+      <div class="open-this-item">
+        <img src="https://i.imgur.com/vHZhlnQ.png" alt="Lonely" />
+        <span>Feel Lonely</span>
+        <a href="lonely.html" class="inner-button">Open this</a>
+      </div>
+    </div>
+  </section>
+
   <!-- Falling Heart Script -->
   <script>
     const container = document.getElementById('heart-background');
@@ -286,7 +393,6 @@
         heart.style.opacity = Math.random() * 0.7 + 0.3;
         heart.style.transform = 'rotate(45deg) scale(' + (Math.random() * 0.3 + 0.7) + ')';
         container.appendChild(heart);
-
         setTimeout(() => {
           heart.remove();
         }, 10000);
@@ -298,5 +404,4 @@
 
 </body>
 </html>
-
 
