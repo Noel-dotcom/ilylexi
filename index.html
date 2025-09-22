@@ -283,26 +283,31 @@
           animationContainer.style.opacity = '0';
           setTimeout(() => { animationContainer.style.display = 'none'; }, 1000);
 
-          // FOLLOW CURSOR
-          const updateLightAndMatch = (e) => {
+          // LOCK MATCH IN CENTER
+          const centerX = window.innerWidth / 2;
+          const centerY = window.innerHeight / 2;
+          matchContainer.style.transform = `translate(${centerX}px, ${centerY}px) rotate(10deg)`;
+
+          // SET LIGHT TO CENTER
+          const rect = contentLight.getBoundingClientRect();
+          const lightX = rect.width / 2;
+          const lightY = rect.height / 2;
+          contentLight.style.setProperty('--match-x', `${lightX}px`);
+          contentLight.style.setProperty('--match-y', `${lightY}px`);
+
+          // FOLLOW MOUSE AFTER
+          const updateLightPosition = (e) => {
             const rect = contentLight.getBoundingClientRect();
             const mouseX = e.clientX - rect.left;
             const mouseY = e.clientY - rect.top;
-
-            // match stick follows cursor
             matchContainer.style.transform = `translate(${e.clientX}px, ${e.clientY}px) rotate(10deg)`;
-
-            // light mask follows cursor
             contentLight.style.setProperty('--match-x', `${mouseX}px`);
             contentLight.style.setProperty('--match-y', `${mouseY}px`);
           };
-
-          window.addEventListener('mousemove', updateLightAndMatch);
+          window.addEventListener('mousemove', updateLightPosition);
         }
       }, { once: true });
     });
   </script>
 </body>
 </html>
-
-
