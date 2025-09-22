@@ -333,7 +333,6 @@
           window.addEventListener('mousemove', updateLightPosition);
           
           // Touch events for mobile
-          // Fix the lighting issue, the text goes back to white once you stop holding it on mobile unlike desktop where it's constantly dark
           window.addEventListener('touchstart', updateLightPosition, { passive: false });
           window.addEventListener('touchmove', updateLightPosition, { passive: false });
           window.addEventListener('touchend', updateLightPosition, { passive: false });
