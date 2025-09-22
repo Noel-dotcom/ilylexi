@@ -205,7 +205,6 @@
       100% { transform: translate(var(--dx), var(--dy)) scale(0); opacity:0; }
     }
 
-    /* STRIKE FIXED TO TOUCH BLACK STRIP */
     .strike-animation { animation: strike-match 1.2s cubic-bezier(0.42, 0, 0.58, 1) forwards; }
 
     @keyframes strike-match {
@@ -284,6 +283,19 @@
           animationContainer.style.opacity = '0';
           setTimeout(() => { animationContainer.style.display = 'none'; }, 1000);
 
+          // LOCK MATCH IN CENTER
+          const centerX = window.innerWidth / 2;
+          const centerY = window.innerHeight / 2;
+          matchContainer.style.transform = `translate(${centerX}px, ${centerY}px) rotate(10deg)`;
+
+          // SET LIGHT TO CENTER
+          const rect = contentLight.getBoundingClientRect();
+          const lightX = rect.width / 2;
+          const lightY = rect.height / 2;
+          contentLight.style.setProperty('--match-x', `${lightX}px`);
+          contentLight.style.setProperty('--match-y', `${lightY}px`);
+
+          // FOLLOW MOUSE AFTER
           const updateLightPosition = (e) => {
             const rect = contentLight.getBoundingClientRect();
             const mouseX = e.clientX - rect.left;
@@ -299,3 +311,4 @@
   </script>
 </body>
 </html>
+
