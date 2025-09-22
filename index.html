@@ -22,6 +22,7 @@
       cursor: none;
       overflow-x: hidden;
       letter-spacing: 0.1rem;
+      touch-action: manipulation;
     }
 
     .content-container {
@@ -220,6 +221,17 @@
       66%  { transform: scaleY(0.95) scaleX(0.98); opacity: 0.9; }
       100% { transform: scaleY(1.05) scaleX(1.02); opacity: 0.95; }
     }
+
+    /* Mobile specific styles */
+    @media (max-width: 768px) {
+      .title {
+        font-size: 2rem;
+      }
+      
+      .content-container {
+        padding: 4rem 1rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -238,7 +250,7 @@
       <h1 class="title">You're the light to my dark life</h1>
       <p class="text-center text-sm leading-relaxed tracking-wider text-body">
         My dearest,<br><br>
-        It’s strange how I never noticed the absence of light until you came along...
+        It's strange how I never noticed the absence of light until you came along...
       </p>
     </main>
 
@@ -246,7 +258,7 @@
       <h1 class="title">You're the light to my dark life</h1>
       <p class="text-center text-sm leading-relaxed tracking-wider text-body">
         My dearest,<br><br>
-        It’s strange how I never noticed the absence of light until you came along...
+        It's strange how I never noticed the absence of light until you came along...
       </p>
     </main>
   </div>
@@ -263,12 +275,12 @@
       function createSpark() {
         const spark = document.createElement('div');
         spark.className = 'spark';
-        const dx = (Math.random()-0.5)*40 + 'px';
-        const dy = (-Math.random()*30)+'px';
+        const dx = (Math.random() - 0.5) * 40 + 'px';
+        const dy = (-Math.random() * 30) + 'px';
         spark.style.setProperty('--dx', dx);
         spark.style.setProperty('--dy', dy);
         sparksContainer.appendChild(spark);
-        setTimeout(()=>{spark.remove();}, 500);
+        setTimeout(() => { spark.remove(); }, 500);
       }
 
       matchContainer.classList.add('strike-animation');
@@ -295,16 +307,35 @@
           contentLight.style.setProperty('--match-x', `${lightX}px`);
           contentLight.style.setProperty('--match-y', `${lightY}px`);
 
-          // FOLLOW MOUSE AFTER
+          // FOLLOW MOUSE AND TOUCH AFTER
           const updateLightPosition = (e) => {
+            e.preventDefault(); // Prevent scrolling on touch devices
+            let clientX, clientY;
+            // Check for touch events first
+            if (e.touches && e.touches.length > 0) {
+              clientX = e.touches[0].clientX;
+              clientY = e.touches[0].clientY;
+            } else {
+              // Fallback to mouse events
+              clientX = e.clientX;
+              clientY = e.clientY;
+            }
+
             const rect = contentLight.getBoundingClientRect();
-            const mouseX = e.clientX - rect.left;
-            const mouseY = e.clientY - rect.top;
-            matchContainer.style.transform = `translate(${e.clientX}px, ${e.clientY}px) rotate(10deg)`;
+            const mouseX = clientX - rect.left;
+            const mouseY = clientY - rect.top;
+            matchContainer.style.transform = `translate(${clientX}px, ${clientY}px) rotate(10deg)`;
             contentLight.style.setProperty('--match-x', `${mouseX}px`);
             contentLight.style.setProperty('--match-y', `${mouseY}px`);
           };
+          
+          // Mouse events for desktop
           window.addEventListener('mousemove', updateLightPosition);
+          
+          // Touch events for mobile
+          window.addEventListener('touchstart', updateLightPosition, { passive: false });
+          window.addEventListener('touchmove', updateLightPosition, { passive: false });
+          window.addEventListener('touchend', updateLightPosition, { passive: false });
         }
       }, { once: true });
     });
