@@ -253,24 +253,40 @@
       filter: drop-shadow(0 0 12px rgba(255,232,8,0.9));
     }
 
-    #sparks {
+      #sparks {
       position: absolute;
-      width: 0; height: 0;
+      top: -12px;
+      left: -4px;
+      width: 16px; 
+      height: 16px;
       pointer-events: none;
+      z-index: 45;
     }
 
     .spark {
       position: absolute;
-      width: 2px; height: 2px;
-      background: yellow;
+      width: 3px; 
+      height: 3px;
+      background: radial-gradient(circle, #ffff00 0%, #ff6600 70%, #ff0000 100%);
       border-radius: 50%;
-      opacity: 0.8;
-      animation: spark-move 0.5s ease-out forwards;
+      opacity: 1;
+      animation: spark-move 1.2s ease-out forwards;
+      box-shadow: 0 0 6px rgba(255, 255, 0, 0.8);
     }
 
     @keyframes spark-move {
-      0% { transform: translate(0,0) scale(1); opacity:1; }
-      100% { transform: translate(var(--dx), var(--dy)) scale(0); opacity:0; }
+      0% { 
+        transform: translate(0, 0) scale(1); 
+        opacity: 1; 
+      }
+      30% { 
+        transform: translate(var(--dx), var(--dy)) scale(0.8); 
+        opacity: 0.9; 
+      }
+      100% { 
+        transform: translate(calc(var(--dx) * 2), calc(var(--dy) * 2)) scale(0); 
+        opacity: 0; 
+      }
     }
 
     .strike-animation { 
