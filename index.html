@@ -27,7 +27,7 @@
 
     .content-container {
       position: relative;
-      padding: 8rem 2rem;
+      padding: 8rem 3rem;
       max-width: 600px;
       margin: 0 auto;
     }
@@ -229,7 +229,13 @@
       }
       
       .content-container {
-        padding: 4rem 1rem;
+        padding: 4rem 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .content-container {
+        padding: 4rem 1.5rem;
       }
     }
   </style>
@@ -308,21 +314,19 @@
           contentLight.style.setProperty('--match-y', `${lightY}px`);
 
           // FOLLOW MOUSE AND TOUCH AFTER
-          let isMobileDevice = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
           let isTouching = false;
           
           const updateLightPosition = (e) => {
             e.preventDefault();
             let clientX, clientY;
             
-            // Handle touch events (mobile) - only when actively touching
+            // Handle touch events (mobile) - only move during touchmove, not touchstart
             if (e.touches && e.touches.length > 0) {
-              if (!isTouching && e.type === 'touchstart') {
-                isTouching = true;
-              }
-              if (isTouching) {
+              if (e.type === 'touchmove' && isTouching) {
                 clientX = e.touches[0].clientX;
                 clientY = e.touches[0].clientY;
+              } else {
+                return; // Don't move on touchstart
               }
             }
             // Handle mouse events (desktop) - always follow cursor immediately
@@ -343,6 +347,12 @@
             contentLight.style.setProperty('--match-y', `${mouseY}px`);
           };
 
+          const handleTouchStart = (e) => {
+            e.preventDefault();
+            isTouching = true;
+            // Don't move the match on touchstart - only set the flag
+          };
+
           const handleTouchEnd = () => {
             isTouching = false;
             // Don't update position on touch end - match stays where it is
@@ -351,8 +361,8 @@
           // Desktop - match follows cursor immediately (no clicking required)
           window.addEventListener('mousemove', updateLightPosition);
           
-          // Mobile - drag only behavior  
-          window.addEventListener('touchstart', updateLightPosition, { passive: false });
+          // Mobile - drag only behavior (no tap-to-teleport)
+          window.addEventListener('touchstart', handleTouchStart, { passive: false });
           window.addEventListener('touchmove', updateLightPosition, { passive: false });
           window.addEventListener('touchend', handleTouchEnd, { passive: false });
         }
