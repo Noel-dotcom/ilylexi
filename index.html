@@ -273,14 +273,27 @@
       100% { transform: translate(var(--dx), var(--dy)) scale(0); opacity:0; }
     }
 
-    .strike-animation { animation: strike-match 1.2s cubic-bezier(0.42, 0, 0.58, 1) forwards; }
+    .strike-animation { 
+  animation: strike-match 2.5s ease-in-out forwards; /* slower strike */
+}
 
-    @keyframes strike-match {
-      0% { transform: translate(calc(50vw - 60px), calc(50vh - 120px)) rotate(0deg); }
-      50% { transform: translate(calc(50vw - 60px), calc(50vh - 35px)) rotate(-20deg); }
+.strike-animation { 
+  animation: strike-match 3s ease-in-out forwards; /* slower and longer */
+}
+
+.strike-animation { 
+  animation: strike-match 2.5s ease-in-out forwards; /* slower strike */
+}
+
+ @keyframes strike-match {
+      0% { transform: translate(calc(80vw - 120px), calc(50vh - 180px)) rotate(0deg); }
+      50% { transform: translate(calc(50vw - 120px), calc(50vh - 35px)) rotate(-20deg); }
       80% { transform: translate(calc(50vw - 60px), calc(50vh - 30px)) rotate(-5deg); }
-      100% { transform: translate(calc(50vw - 60px), calc(50vh - 30px)) rotate(0deg); }
+      100% { transform: translate(calc(50vw - -3px), calc(50vh - -1px)) rotate(9deg); }
     }
+
+
+
 
     @keyframes flame-flicker {
       0%   { transform: scaleY(1) scaleX(1); opacity: 0.9; }
@@ -426,4 +439,3 @@
   </script>
 </body>
 </html>
-
