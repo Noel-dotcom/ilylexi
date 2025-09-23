@@ -308,17 +308,31 @@
           contentLight.style.setProperty('--match-y', `${lightY}px`);
 
           // FOLLOW MOUSE AND TOUCH AFTER
+          let isMobileDevice = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+          let isTouching = false;
+          
           const updateLightPosition = (e) => {
-            e.preventDefault(); // Prevent scrolling on touch devices
+            e.preventDefault();
             let clientX, clientY;
-            // Check for touch events first
+            
+            // Handle touch events (mobile) - only when actively touching
             if (e.touches && e.touches.length > 0) {
-              clientX = e.touches[0].clientX;
-              clientY = e.touches[0].clientY;
-            } else {
-              // Fallback to mouse events
+              if (!isTouching && e.type === 'touchstart') {
+                isTouching = true;
+              }
+              if (isTouching) {
+                clientX = e.touches[0].clientX;
+                clientY = e.touches[0].clientY;
+              }
+            }
+            // Handle mouse events (desktop) - always follow cursor immediately
+            else if (e.type === 'mousemove') {
               clientX = e.clientX;
               clientY = e.clientY;
+            }
+            // Exit if no valid coordinates
+            else {
+              return;
             }
 
             const rect = contentLight.getBoundingClientRect();
@@ -328,14 +342,19 @@
             contentLight.style.setProperty('--match-x', `${mouseX}px`);
             contentLight.style.setProperty('--match-y', `${mouseY}px`);
           };
+
+          const handleTouchEnd = () => {
+            isTouching = false;
+            // Don't update position on touch end - match stays where it is
+          };
           
-          // Mouse events for desktop
+          // Desktop - match follows cursor immediately (no clicking required)
           window.addEventListener('mousemove', updateLightPosition);
           
-          // Touch events for mobile
+          // Mobile - drag only behavior  
           window.addEventListener('touchstart', updateLightPosition, { passive: false });
           window.addEventListener('touchmove', updateLightPosition, { passive: false });
-          window.addEventListener('touchend', updateLightPosition, { passive: false });
+          window.addEventListener('touchend', handleTouchEnd, { passive: false });
         }
       }, { once: true });
     });
