@@ -6,6 +6,7 @@
   <title>My Light in the Dark</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
@@ -74,6 +75,20 @@
     }
 
     .text-body { font-weight: 400; }
+    
+  #matchbox .side-text-vertical {
+  position: absolute;
+  top: 8px;
+  right: 8px;                  /* place on the right edge inside the box */
+  writing-mode: vertical-rl;   /* letters stacked top->bottom */
+  text-orientation: upright;   /* letters remain upright */
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 10000;
+  color: #222;
+  pointer-events: none;
+  z-index: 20;
+}
 
     #animation-container {
       position: fixed;
@@ -90,54 +105,81 @@
       position: relative;
       width: 120px;
       height: 90px;
-      background: #fff;
+      background: #EBE8E2;
       border-radius: 8px;
       box-shadow: 0 6px 8px rgba(0,0,0,0.2), inset 0 0 5px rgba(255,255,255,0.5);
       border: 1px solid #ccc;
       overflow: hidden;
     }
+    
+    #matchbox::after {
+  content: "";
+  position: absolute;
+  left: -10px;
+  right: -10px;
+  bottom: 0px;
+  height: 22px;
+  background-color: rgba(0,0,0,0.3); /* subtle gray line */
+  pointer-events: none;
+  z-index: 2;
+}
+
+
+
+    /* Sputnik label inside box */
+    #sputnik-label {
+      position: absolute;
+      top: 6px;
+      left: 12px;
+      width: calc(100% - 24px);
+      height: 60%;
+      background:
+        radial-gradient(circle at 20% 50%, #e6e6e6 15%, transparent 16%), /* moon */
+        linear-gradient(135deg, rgba(90,134,165,0.2) 25%, transparent 25%) 0 0/12px 12px,
+        linear-gradient(-135deg, rgba(90,134,165,0.2) 25%, transparent 25%) 0 0/12px 12px,
+        linear-gradient(135deg, #5a86a5 0%, #3a5f7d 100%);
+      border-radius: 4px;
+      overflow: visible;
+      z-index: 2;
+    }
+
+    /* Antennas: 3 lines coming from right side */
+    .antenna {
+      position: absolute;
+      width: 2px;
+      height: 40px;
+      background: #e6e6e6 15%;
+      top: 60%;
+      left: 20%;
+      transform-origin: top left;
+      z-index: 0; /* behind the circle */
+    }
+    .antenna.middle { transform: rotate(-90deg) translateX(3px); }
+    .antenna.top    { transform: rotate(-75deg) translateX(-4px); }
+    .antenna.bottom { transform: rotate(-105deg) translateX(10px); }
 
     /* black crisscross strike strip */
-    #matchbox::before {
-      content:'';
-      position:absolute;
-      bottom:6px;
-      left:10px;
-      width: 100px;
-      height: 12px;
-      background-color: #333; /* dark gray base */
+    #strike-strip {
+      position: absolute;
+      bottom: 3.5px;
+      left: 10px;
+      width: calc(100% - 20px);
+      height: 14px;
+      background-color: #333;
       background-image: 
         linear-gradient(45deg, rgba(180,180,180,0.25) 25%, transparent 25%),
         linear-gradient(-45deg, rgba(180,180,180,0.25) 25%, transparent 25%),
         linear-gradient(45deg, transparent 75%, rgba(180,180,180,0.25) 75%),
         linear-gradient(-45deg, transparent 75%, rgba(180,180,180,0.25) 75%);
-      background-size: 6px 6px; /* crisscross diamonds */
+      background-size: 6px 6px;
       border-radius: 6px;
       box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
-      z-index: 2;
-    }
-
-    /* Sputnik-style printed label */
-    #matchbox::after {
-      content: "";
-      position: absolute;
-      top: 8px;
-      left: 12px;
-      width: 80%;
-      height: 65%;
-      background: 
-        radial-gradient(circle at 30% 40%, #e6e6e6 15%, transparent 16%), /* moon */
-        linear-gradient(135deg, rgba(90,134,165,0.2) 25%, transparent 25%) 0 0/12px 12px,
-        linear-gradient(-135deg, rgba(90,134,165,0.2) 25%, transparent 25%) 0 0/12px 12px,
-        linear-gradient(135deg, #5a86a5 0%, #3a5f7d 100%); /* sky */
-      border-radius: 4px;
-      z-index: 1;
-      overflow: visible; /* makes antennas show outside */
+      z-index: 5;
     }
 
     #match-container {
       position: fixed;
-      top:70px; 
+      top:65px; 
       left:50px;
       z-index: 50;
       pointer-events:none;
@@ -247,27 +289,38 @@
       100% { transform: scaleY(1.05) scaleX(1.02); opacity: 0.95; }
     }
 
-    /* Mobile specific styles */
     @media (max-width: 768px) {
-      .title {
-        font-size: 2rem;
-      }
-      
-      .content-container {
-        padding: 4rem 2rem;
-      }
+      .title { font-size: 2rem; }
+      .content-container { padding: 4rem 2rem; }
     }
 
     @media (max-width: 480px) {
-      .content-container {
-        padding: 4rem 1.5rem;
-      }
+      .content-container { padding: 4rem 1.5rem; }
     }
   </style>
 </head>
 <body>
   <div id="animation-container">
-    <div id="matchbox"></div>
+    <div id="matchbox">
+      <div id="sputnik-label">
+        <div class="antenna middle"></div>
+        <div class="antenna top"></div>
+        <div class="antenna bottom"></div>
+        <span style="position:absolute; 
+        top:50%; 
+        left:60px;
+         transform: translateY(-50%) rotate(-90deg);
+         transform-origin:center;
+         font-family:'Montserrat','Poppins', sans-serif;
+         font-size:12px; 
+         font-weight:700;
+         color:#e6e6e6; 
+         white-space:nowrap;
+         pointer-events:none; z-index:999;">
+          LEXI
+      </div>
+      <div id="strike-strip"></div>
+    </div>
   </div>
 
   <div id="match-container">
@@ -338,31 +391,19 @@
           contentLight.style.setProperty('--match-x', `${lightX}px`);
           contentLight.style.setProperty('--match-y', `${lightY}px`);
 
-          // FOLLOW MOUSE AND TOUCH AFTER
           let isTouching = false;
-          
           const updateLightPosition = (e) => {
             e.preventDefault();
             let clientX, clientY;
-            
-            // Handle touch events (mobile) - only move during touchmove, not touchstart
             if (e.touches && e.touches.length > 0) {
               if (e.type === 'touchmove' && isTouching) {
                 clientX = e.touches[0].clientX;
                 clientY = e.touches[0].clientY;
-              } else {
-                return; // Don't move on touchstart
-              }
-            }
-            // Handle mouse events (desktop) - always follow cursor immediately
-            else if (e.type === 'mousemove') {
+              } else return;
+            } else if (e.type === 'mousemove') {
               clientX = e.clientX;
               clientY = e.clientY;
-            }
-            // Exit if no valid coordinates
-            else {
-              return;
-            }
+            } else return;
 
             const rect = contentLight.getBoundingClientRect();
             const mouseX = clientX - rect.left;
@@ -372,21 +413,10 @@
             contentLight.style.setProperty('--match-y', `${mouseY}px`);
           };
 
-          const handleTouchStart = (e) => {
-            e.preventDefault();
-            isTouching = true;
-            // Don't move the match on touchstart - only set the flag
-          };
-
-          const handleTouchEnd = () => {
-            isTouching = false;
-            // Don't update position on touch end - match stays where it is
-          };
+          const handleTouchStart = (e) => { e.preventDefault(); isTouching = true; };
+          const handleTouchEnd = () => { isTouching = false; };
           
-          // Desktop - match follows cursor immediately (no clicking required)
           window.addEventListener('mousemove', updateLightPosition);
-          
-          // Mobile - drag only behavior (no tap-to-teleport)
           window.addEventListener('touchstart', handleTouchStart, { passive: false });
           window.addEventListener('touchmove', updateLightPosition, { passive: false });
           window.addEventListener('touchend', handleTouchEnd, { passive: false });
